@@ -1,0 +1,1 @@
+# Paradigmas.2022-01---Prolog
