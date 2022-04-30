@@ -1,0 +1,18 @@
+;Representación
+
+% cardsSet (string)
+% Elements (int)
+% numE (string)
+% maxC (string)
+% seed (string)
+% CS (string)
+% nthCard (int)
+% cardsSetFindTotalCards (int)
+% cardsSetMissingCards (string)
+% cardsSetToString (string)
+% dobbleGame (int)
+% game (int)
+% dobbleGameRegister (stirng
+% user (string)
+% gameIn 
+% gameOut 
