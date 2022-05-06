@@ -16,3 +16,12 @@
 % user (string)
 % gameIn 
 % gameOut 
+
+% predicado de pertenencia / constructores.
+
+% cardsSet(Elements,numE,maxC,seed,CS):- cardsSet en el formato elements, numE, maxC y seed volviendo a CS.
+cardsSet(Elements,numE,maxC,seed,CS):- CS = dobble(Elements,numE,MaxC,seed).
+
+% Baraja de cartas (cardsSetIsDobble).
+cardsSetIsDobble(Elements,Dobble,createCard):- createCard = [Elements,Dobble,[],0].
+
