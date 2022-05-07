@@ -25,3 +25,24 @@ cardsSet(Elements,numE,maxC,seed,CS):- CS = dobble(Elements,numE,MaxC,seed).
 % Baraja de cartas (cardsSetIsDobble).
 cardsSetIsDobble(Elements,Dobble,createCard):- createCard = [Elements,Dobble,[],0].
 
+cardsSet(Cards, Elements, NumE, MaxC, Seed) :-
+    length(Elements, 12),
+    NumE > 0,
+    MaxC >= 0,
+    Seed > 0,
+    sample(Elements, Cards, NumE, MaxC, Seed).
+    
+sample(List, Sample, N, M, Seed) :-
+    length(List, L),
+    N > 0,
+    M >= 0,
+    Seed > 0,
+    sample(List, Sample, N, M, 1, L, [X]).
+
+sample(_, [], _, M, K, _, Acc) :-
+    K =:= M+1.
+
+sample(List, Sample, N, M, K, L, Acc) :-
+    K < M+1,
+    K1 is K+1,
+    sample(List, Sample, N, M, K1, L, [X|Acc]).    
