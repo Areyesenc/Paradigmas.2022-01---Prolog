@@ -82,3 +82,35 @@ sample(List, Sample, N, M, K, L, Acc) :-
     Seed > 0,
     random(0, L, I),
     nth0(I, List, X).
+    
+    /*
+El predicado cardsSetIsDobble/1 toma un argumento:
+- Cards es una lista de valores de todas las cartas (enteros en el rango 1-12)
+
+Este predicado tiene éxito si la lista de valores de las cartas satisface la siguiente condición
+- Cada elemento de la lista aparece exactamente dos veces
+*/
+cardsSetIsDobble(Cards) :-
+    length(Cards, 12),
+    maplist(card_is_dobble, Cards).
+
+% cardsSetIsDobble([1,2,3,4,5,6,7,8,9,10,11,12], [a,b,c,d,e,f,g,h,i,j,k,l], 3, 6, 7).
+
+card_is_dobble(Card) :-
+    maplist(different_element, Card).
+
+
+/*
+El predicado different_element/2 toma dos argumentos:
+- Element es un símbolo de elemento (por ejemplo, 'Fuego', 'Agua', 'Tierra', 'Aire')
+- card es una lista de valores de la carta (enteros en el rango 1-12)
+
+Este predicado tiene éxito si el elemento no aparece en la lista de tarjetas.
+*/
+different_element(Element, Card) :-
+    maplist(different_element_ayuda(Element), Card).
+
+different_element_ayuda(_, []).
+different_element_ayuda(Element, [H|T]) :-
+    dif(Element, H),
+    different_element_ayuda(Element, T).
