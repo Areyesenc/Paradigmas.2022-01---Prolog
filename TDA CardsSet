@@ -25,18 +25,47 @@ cardsSet(Elements,numE,maxC,seed,CS):- CS = dobble(Elements,numE,MaxC,seed).
 % Baraja de cartas (cardsSetIsDobble).
 cardsSetIsDobble(Elements,Dobble,createCard):- createCard = [Elements,Dobble,[],0].
 
+% Elements (list) X numE(int) X maxC(int) X seed (int) X CS (CardSet)
+/*
+El predicado cardsSet/5 toma cuatro argumentos:
+- Cards es una lista de valores de cartas (enteros en el rango 1-12)
+- Elements es una lista de símbolos de elementos (por ejemplo, 'Fuego', 'Agua', 'Tierra', 'Aire')
+- NumE es el número de elementos del conjunto (debe ser mayor que cero)
+- MaxC es el número máximo de carta por elemento (debe ser mayor o igual que cero)
+- Seed es integer positivo utilizado para inicializar el generador de números aleatorios
+
+Este predicado tiene éxito si la lista de valores de las cartas satisface las siguientes condiciones
+- Hay 12 elementos en el conjunto
+- El número de elementos es mayor que cero
+*/
 cardsSet(Cards, Elements, NumE, MaxC, Seed) :-
     length(Elements, 12),
     NumE > 0,
     MaxC >= 0,
     Seed > 0,
     sample(Elements, Cards, NumE, MaxC, Seed).
-    
+
+%cardsSet([1,2,3,4,5,6,7,8,9,10,11,12], [a,b,c,d,e,f,g,h,i,j,k,l], 3, 6, 7).
+/*
+El predicado muestra/7 toma seis argumentos:
+- Lista es la lista de la que se extrae la muestra
+- Sample es la lista resultante de los elementos muestreados
+- N es el número de elementos a muestrear (debe ser mayor que cero)
+- M es el número máximo de elementos por lista (debe ser mayor o igual que cero)
+- Seed es una entero positivo utilizada para inicializar el generador de números aleatorios
+- Acc es una lista de acumuladores utilizada para llevar la cuenta de los elementos muestreados (debe estar inicialmente vacía)
+
+Este predicado tiene éxito si la lista de valores de la carta satisface las siguientes condiciones
+- Hay 12 elementos en el conjunto
+- El número de elementos es mayor que cero
+- El número máximo de cartas
+*/
 sample(List, Sample, N, M, Seed) :-
     length(List, L),
     N > 0,
     M >= 0,
     Seed > 0,
+    random_member(X, List, Seed),
     sample(List, Sample, N, M, 1, L, [X]).
 
 sample(_, [], _, M, K, _, Acc) :-
@@ -45,4 +74,11 @@ sample(_, [], _, M, K, _, Acc) :-
 sample(List, Sample, N, M, K, L, Acc) :-
     K < M+1,
     K1 is K+1,
-    sample(List, Sample, N, M, K1, L, [X|Acc]).    
+    %random_member(X, List, Seed),
+    sample(List, Sample, N, M, K1, L, [X|Acc]).
+
+ random_member(X, List, Seed) :-
+    length(List, L),
+    Seed > 0,
+    random(0, L, I),
+    nth0(I, List, X).
