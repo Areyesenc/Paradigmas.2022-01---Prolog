@@ -45,7 +45,9 @@ cardsSet(Cards, Elements, NumE, MaxC, Seed) :-
     Seed > 0,
     sample(Elements, Cards, NumE, MaxC, Seed).
 
-%cardsSet([1,2,3,4,5,6,7,8,9,10,11,12], [a,b,c,d,e,f,g,h,i,j,k,l], 3, 6, 7).
+%cardsSetIsDobble([1,2,3,4,5,6,7,8,9,10,11,12]).
+%cardsSetIsDobble([1,2,3,4,5,6,7,8,9,10,11,12,1,2,3,4,5,6,7,8,9,10,11,12]).
+
 /*
 El predicado muestra/7 toma seis argumentos:
 - Lista es la lista de la que se extrae la muestra
