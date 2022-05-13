@@ -129,3 +129,16 @@ cardsSetNthCard(N, Cards, Card) :-
     N >= 0,
     N < L,
     nth0(N, Cards, Card).
+
+/*
+El predicado cardsSetFindTotalCards/2 toma dos argumentos:
+- Card es una lista de valores de Cards (enteros en el rango 1-12)
+- Total es el número resultante de cartas en el conjunto (debe ser mayor o igual que cero)
+
+Este predicado tiene éxito si el Total es el número de cartas del conjunto que puede formarse con la lista Card.
+*/
+
+cardsSetFindTotalCards(Card, Total) :-
+    length(Card, L),
+    Total is (2^L)-1.
+
