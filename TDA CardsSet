@@ -114,3 +114,18 @@ different_element_ayuda(_, []).
 different_element_ayuda(Element, [H|T]) :-
     dif(Element, H),
     different_element_ayuda(Element, T).
+
+/*
+El predicado cardsSetNthCard/3 toma tres argumentos:
+- N es el índice de la carta a recuperar (debe ser mayor o igual que cero y menor que la longitud de la lista de Cards)
+- Cards es una lista de valores de Cards (enteros en el rango 1-12)
+- card es el valor de la carta resultante (entero en el rango 1-12)
+
+Este predicado tiene éxito si Card es el elemento N de la lista Cards.
+*/
+
+cardsSetNthCard(N, Cards, Card) :-
+    length(Cards, L),
+    N >= 0,
+    N < L,
+    nth0(N, Cards, Card).
