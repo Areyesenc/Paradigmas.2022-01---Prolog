@@ -44,3 +44,17 @@ dobbleGameRegister(User, game(Players, Cards, Mode, Seed, Acc, N), game(Players,
     length(Players, P),
     P > N,
     N1 is N+1.
+
+/*
+El predicado dobbleGameWhoseTurnIsIt/2 toma dos argumentos:
+- game(Players, Cards, Mode, Seed, Users, N) es el estado del juego
+- user(User) es el nombre del jugador resultante
+
+Este predicado tiene éxito si es el turno del jugador con el nombre dado.
+*/
+
+dobbleGameWhoseTurnIsIt(game(_, _, _, _, Users, N), user(User)) :-
+    nth0(N, Users, user(User)).
+
+dobbleGameWhoseTurnIsIt(game(Players, _, _, _, _, N), user(User)) :-
+    nth0(N, Players, user(User)).
