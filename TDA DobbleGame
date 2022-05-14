@@ -1,11 +1,31 @@
 %Representación:
  % numPlayers(int) X cardsSet X mode (string) X seed (int) X game (TDA Game)
- 
+/*
+El predicado dobbleGame/5 toma cinco argumentos:
+- Players es una lista de nombres de jugadores
+- Cards es una lista de valores de cartas (enteros en el rango 1-12)
+- Mode es el modo de juego ('aleatorio' o 'secuencial')
+- Seed es un entero positivo utilizado para inicializar el generador de números aleatorios
+- Game es el estado del juego resultante
+
+Este predicado tiene éxito si el juego se inicializa con los parámetros dados.
+*/
+
 dobbleGame(Players, Cards, Mode, Seed, Game) :-
     length(Players, P),
     P > 0,
     cardsSetIsDobble(Cards),
     member(Mode, ['aleatorio', 'secuencial']),
-    game(Players, Cards, Mode, Seed, Game).
-    
-game(Players, Cards, Mode, Seed, game(Players, Cards, Mode, Seed, [], 0)).
+    game_init(Players, Cards, Mode, Seed, Game).
+
+
+El predicado game_init/5 toma cinco argumentos:
+- Players es una lista de nombres de jugadores
+- Cards es una lista de valores de cartas (enteros en el rango 1-12)
+- Mode es el modo de juego ('aleatorio' o 'secuencial')
+- Seed es una semilla entera positiva utilizada para inicializar el generador de números aleatorios
+- game es el estado del juego resultante, luego es tomado por una lista.
+
+Este predicado tiene éxito si el juego se inicializa con los parámetros dados.
+*/
+game_init(Players, Cards, Mode, Seed, game(Players, Cards, Mode, Seed, [], 0)).
