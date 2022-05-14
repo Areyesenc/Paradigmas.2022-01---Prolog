@@ -29,3 +29,18 @@ El predicado game_init/5 toma cinco argumentos:
 Este predicado tiene éxito si el juego se inicializa con los parámetros dados.
 */
 game_init(Players, Cards, Mode, Seed, game(Players, Cards, Mode, Seed, [], 0)).
+
+/*
+El predicado dobbleGameRegister/3 toma tres argumentos:
+- Usuario es el nombre del jugador a registrar
+- game(Players, Cards, Mode, Seed, Acc, N) es el estado del juego antes del registro
+- game(Players, Cards, Mode, Seed, [user(User)|Acc], N1) es el estado del juego resultante después del registro
+
+Este predicado tiene éxito si el usuario está registrado y el estado del juego se actualiza en consecuencia.
+*/
+
+dobbleGameRegister(User, game(Players, Cards, Mode, Seed, Acc, N), game(Players, Cards, Mode, Seed, [user(User)|Acc], N1)) :-
+    not(member(user(_), Acc)),
+    length(Players, P),
+    P > N,
+    N1 is N+1.
