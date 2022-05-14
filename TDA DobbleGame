@@ -1,0 +1,11 @@
+%Representación:
+ % numPlayers(int) X cardsSet X mode (string) X seed (int) X game (TDA Game)
+ 
+dobbleGame(Players, Cards, Mode, Seed, Game) :-
+    length(Players, P),
+    P > 0,
+    cardsSetIsDobble(Cards),
+    member(Mode, ['aleatorio', 'secuencial']),
+    game(Players, Cards, Mode, Seed, Game).
+    
+game(Players, Cards, Mode, Seed, game(Players, Cards, Mode, Seed, [], 0)).
